@@ -14,15 +14,11 @@ const checkJWT = (req, res, next) => {
             })
         }
 
-        const payload = jwt.verify( token, process.env.JWT_KEY );
-        res.json({
-            ok:true,
-            payload
-        });
+        const  { uid } = jwt.verify( token, process.env.JWT_KEY );
+        req.uid = uid;
+          
 
-        
-
-        // next();
+        next();
         
     } catch (err) {
         return res.status(401).json({
@@ -30,8 +26,6 @@ const checkJWT = (req, res, next) => {
             msg: 'Token not valid'
         })
     }
-
-
 }
 
 
