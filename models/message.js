@@ -1,17 +1,17 @@
 const { Schema, model } = require('mongoose');
 
-const MensajeSchema = Schema ({
-    de: {
+const MessageSchema = Schema ({
+    from: {
         type: Schema.Types.ObjectId,
         ref: 'Usuario', 
         required: true
     },
-    para: {
+    to: {
         type: Schema.Types.ObjectId,
         ref: 'Usuario', 
         required: true
     }, 
-    mensaje: {
+    message: {
         type: String,        
         required: true
     }
@@ -20,10 +20,10 @@ const MensajeSchema = Schema ({
 });
 
 // La función de aqui no puede ser de flecha sino no funciona
-MensajeSchema.method('toJSON', function() {
+MessageSchema.method('toJSON', function() {
     const { __v, ...object } = this.toObject();
     return object; 
 
 });
 
-module.exports = model( 'Mensaje', MensajeSchema );
+module.exports = model( 'Message', MessageSchema );
