@@ -13,6 +13,9 @@ class Sockets {
         // On connection
         this.io.on('connection', ( socket ) => {
 
+
+            console.log("cliente conectado");
+
          // TODO: validat JWT
 
          // si el token no es válido , desconectar
@@ -29,8 +32,11 @@ class Sockets {
          // marcar en la bbdd que el usuario se desconectó.
 
          // TODO: emitir todos los usuarios conectados
-        
+
         });
+        this.io.on('disconnect', () => {
+            console.log('cliente desconectado');
+        })
     }
 
 
