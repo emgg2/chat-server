@@ -16,7 +16,16 @@ const disconnectUser = async( uid ) => {
     return user; 
 }
 
+
+const getUsers = async() => {
+    const users = await User
+    .find()
+    .sort('-online');
+    return users;
+}
+
 module.exports = {
     connectUser,
-    disconnectUser
+    disconnectUser,
+    getUsers
 }
